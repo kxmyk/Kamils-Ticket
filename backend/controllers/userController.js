@@ -17,7 +17,7 @@ const registerUser = asyncHandler(async (req, res) => {
 	// Find is user already exists
 	const userExists = await User.findOne({email})
 
-	if(userExists) {
+	if (userExists) {
 		res.status(400)
 		throw new Error('User already exists')
 	}
@@ -33,7 +33,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		password: hashedPassword,
 	})
 
-	if(user) {
+	if (user) {
 		res.status(201).json({
 			_id: user._id,
 			name: user.name,
@@ -49,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // @desc Login a new user
 // @route /api/users/login
 // @access public
-const loginUser = asyncHandler( async (req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
 	const {email, password} = req.body
 
 	const user = await User.findOne({email})
@@ -68,9 +68,21 @@ const loginUser = asyncHandler( async (req, res) => {
 	}
 })
 
+// @desc Get current user
+// @route /api/users/me
+// @access private
+const getMe = asyncHandler(async (req, res) => {
+	const user = {
+		id: req.user._id,
+		email: req.user.email,
+		name: req.user.name,
+	}
+	res.status(200).json(user)
+})
+
 // Generate jwt token
 const generateToken = (id) => {
-	return jwt.sign({ id }, process.env.JWT_SECRET, {
+	return jwt.sign({id}, process.env.JWT_SECRET, {
 		expiresIn: '30d',
 	})
 }
@@ -78,4 +90,5 @@ const generateToken = (id) => {
 module.exports = {
 	registerUser,
 	loginUser,
+	getMe
 }
