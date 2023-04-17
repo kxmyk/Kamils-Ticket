@@ -8,8 +8,8 @@ const initialState = {
 	isSuccess: false,
 	isLoading: false,
 	message: '',
-
 }
+
 // Create new ticker
 export const createTicket = createAsyncThunk(
 	'tickets/create',
@@ -78,7 +78,7 @@ export const ticketSlice = createSlice({
 	reducers: {
 		reset: (state) => initialState
 	},
-	extraReducers: (builder) => {
+	extraReducers: builder => {
 		builder
 		// Create ticket
 		.addCase(createTicket.pending, (state) => {
