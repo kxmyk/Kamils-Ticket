@@ -2,7 +2,7 @@
   "name": "kamils_ticket",
   "version": "1.0.0",
   "description": "Ticket support app",
-  "main": "server.js",
+  "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",

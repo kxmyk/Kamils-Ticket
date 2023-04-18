@@ -34,4 +34,4 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(errorHandler)
 
-app.listen(PORT, () => 'works :')
+app.listen(PORT, () => console.log('works :)'))
