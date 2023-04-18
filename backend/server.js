@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const dotenv = require('dotenv').config()
-const {errorHandler} = require('/Users/kamillukasiuk/Desktop/webDev/kamils_ticket/backend/middleware/errorMiddleware.js')
+const {errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 
 const PORT = process.env.PORT || 5000
